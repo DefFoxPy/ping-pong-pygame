@@ -92,6 +92,9 @@ class Game:
 		if self.score_1 == PUNTUACION_MAXIMA or self.score_2 == PUNTUACION_MAXIMA:
 			self.game_over = True
 
+		self.pelota.hay_colision(self.jugador1)
+		self.pelota.hay_colision(self.jugador2)
+
 		self.listade_todoslos_sprites.update()
 
 	def draw(self):

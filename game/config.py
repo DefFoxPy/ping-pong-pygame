@@ -13,12 +13,12 @@ TEXT_POSY = 40
 # constantes de la pelota
 ball_width = 10
 ball_height = 10
-ball_speed = 6
+ball_speed = 5
 
 # constantes de la pala
 pala_width = 10
 pala_height = 60
-pala_speed = 5
+pala_speed = 4
 pala_pos_y = HEIGHT // 2
 
 PUNTUACION_MAXIMA = 7
