@@ -65,15 +65,15 @@ class Game:
 			self.new()
 
 		# Movimiento del jugador 1
-		if keys[pygame.K_w]:
+		if keys[pygame.K_w] and not self.game_over:
 			self.jugador1.mover_arriba()
-		if keys[pygame.K_s]:
+		if keys[pygame.K_s] and not self.game_over:
 			self.jugador1.mover_abajo()
 
 		# Movimiento del jugador 2
-		if keys[pygame.K_UP]:
+		if keys[pygame.K_UP] and not self.game_over:
 			self.jugador2.mover_arriba()
-		if keys[pygame.K_DOWN]:
+		if keys[pygame.K_DOWN] and not self.game_over:
 			self.jugador2.mover_abajo()
 
 	def update(self):
@@ -87,6 +87,7 @@ class Game:
 
 		if self.pelota.rect.left > WIDTH: # antoacion para el primer jugador
 			self.pelota.posicion_inicial()
+			self.pelota.speed_x *= -1 #
 			self.score_1 += 1
 
 		if self.score_1 == PUNTUACION_MAXIMA or self.score_2 == PUNTUACION_MAXIMA:

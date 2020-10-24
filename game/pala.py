@@ -17,10 +17,12 @@ class Pala(pygame.sprite.Sprite):
 		self.speed = pala_speed
 
 	def mover_arriba(self):
-		self.rect.y -= self.speed
+		if self.rect.top > 0:
+			self.rect.y -= self.speed
 
 	def mover_abajo(self):
-		self.rect.y += self.speed
+		if self.rect.bottom < HEIGHT:
+			self.rect.y += self.speed
 
 	def update(self):
 		if self.rect.top < 0:

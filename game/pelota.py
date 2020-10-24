@@ -25,7 +25,7 @@ class Pelota(pygame.sprite.Sprite):
 	def posicion_inicial(self):
 		self.rect.center = (WIDTH // 2, HEIGHT // 2)
 		self.speed_y = 0
-		self.speed_x = self.speed_x * 0.5 
+		self.speed_x = ball_speed 
 
 	def update(self):
 
@@ -54,11 +54,6 @@ class Pelota(pygame.sprite.Sprite):
 				self.rect.left = paleta.rect.right
 
 			self.speed_x *= -1.1
-
-			print('Velocidad de la pelota')
-			print('x={} \n y={}'.format(self.speed_x, self.speed_y))
-			print('distancia=', distancia)
-
 
 	def stop(self):
 		self.speed_x = 0
