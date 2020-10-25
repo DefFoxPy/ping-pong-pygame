@@ -22,14 +22,19 @@ class Game:
 
 		self.dir = os.path.dirname(__file__)
 		self.dir_images = os.path.join(self.dir, 'sources/sprites')
+		self.dir_sounds = os.path.join(self.dir, 'sources/sounds')
 	
 	def start(self):
+		pygame.mixer.music.load(os.path.join(self.dir_sounds, 'Haggstrom.mp3'))
+		pygame.mixer.music.set_volume(1.0) # float 0.0 - 1.0
+		pygame.mixer.music.play(-1, 0.0)
 		self.new()
 
 	def new(self):
 		self.score_1 = 0
 		self.score_2 = 0
 		self.game_over = False
+		pygame.mixer.music.rewind()
 		self.fondo = pygame.image.load(os.path.join(self.dir_images, 'fondo.png'))
 		self.generar_elementos()
 
@@ -82,15 +87,21 @@ class Game:
 			return
 
 		if self.pelota.rect.right < 0: # anotacion para el segundo jugador
+			sound = pygame.mixer.Sound(os.path.join(self.dir_sounds, 'coin.wav'))
+			sound.play()
 			self.pelota.posicion_inicial()
 			self.score_2 += 1
 
 		if self.pelota.rect.left > WIDTH: # antoacion para el primer jugador
+			sound = pygame.mixer.Sound(os.path.join(self.dir_sounds, 'coin.wav'))
+			sound.play()
 			self.pelota.posicion_inicial()
 			self.pelota.speed_x *= -1 #
 			self.score_1 += 1
 
 		if self.score_1 == PUNTUACION_MAXIMA or self.score_2 == PUNTUACION_MAXIMA:
+			sound = pygame.mixer.Sound(os.path.join(self.dir_sounds, 'lose.wav'))
+			sound.play()
 			self.game_over = True
 
 		self.pelota.hay_colision(self.jugador1)
