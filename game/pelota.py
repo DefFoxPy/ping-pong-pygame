@@ -39,21 +39,20 @@ class Pelota(pygame.sprite.Sprite):
 			self.speed_x *= -1
 
 	def hay_colision(self, paleta):
-		# Verificamos si en verdad hay una colision entre la pelota y un jugador
 		if pygame.sprite.collide_rect(self, paleta):
 
 			distancia = abs(paleta.rect.centery - self.rect.centery)
 			if self.rect.centery >= paleta.rect.centery:
-				self.speed_y = 2 * ball_speed * math.sin(math.radians(distancia))
+				self.speed_y += 2 * ball_speed * math.sin(math.radians(distancia))
 			else:
-				self.speed_y = 2 * ball_speed * -math.sin(math.radians(distancia))
+				self.speed_y += 2 * ball_speed * -math.sin(math.radians(distancia))
 			
 			if es_positivo(self.speed_x): # positivo
 				self.rect.right = paleta.rect.left
 			else: # negativo
 				self.rect.left = paleta.rect.right
 
-			self.speed_x *= -1.1
+			self.speed_x *= -1
 
 	def stop(self):
 		self.speed_x = 0

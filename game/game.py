@@ -92,17 +92,15 @@ class Game:
 			self.pelota.posicion_inicial()
 			self.score_2 += 1
 
-		if self.pelota.rect.left > WIDTH: # antoacion para el primer jugador
+		if self.pelota.rect.left > WIDTH: # anotacion para el primer jugador
 			sound = pygame.mixer.Sound(os.path.join(self.dir_sounds, 'coin.wav'))
 			sound.play()
 			self.pelota.posicion_inicial()
-			self.pelota.speed_x *= -1 #
+			self.pelota.speed_x *= -1 
 			self.score_1 += 1
 
 		if self.score_1 == PUNTUACION_MAXIMA or self.score_2 == PUNTUACION_MAXIMA:
-			sound = pygame.mixer.Sound(os.path.join(self.dir_sounds, 'lose.wav'))
-			sound.play()
-			self.game_over = True
+			self.stop()
 
 		self.pelota.hay_colision(self.jugador1)
 		self.pelota.hay_colision(self.jugador2)
@@ -130,3 +128,8 @@ class Game:
 
 		if self.game_over:
 			self.display_text('Juego terminado', 56, WHITE, WIDTH // 2, HEIGHT // 2)
+
+	def stop(self):
+		sound = pygame.mixer.Sound(os.path.join(self.dir_sounds, 'lose.wav'))
+		sound.play()
+		self.game_over = True
